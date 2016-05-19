@@ -30,7 +30,31 @@
 \subsection{Introduction}
 \begin{frame}
 \frametitle{Introduction}
-Un \textbf{arbre de décision} est un outil de classement de données répartissant celles-ci selon des critères. Chaque nœud de l'arbre correspond à un critère et chaque donnée est répartie selon la valeur booléenne résultante. Dans ce sens, une branche de l'arbre correspond donc à une décision.
+Un \textbf{arbre de décision} est un outil de classement de données, les répartissant selon des critères. C'est une méthode \textbf{d'apprentissage}.
+\begin{enumerate}
+\item Le jeu de données correspond à un vecteur de valeurs.
+\item Chaque nœud de l'arbre correspond à un test sur la valeur d'un des attributs.
+\item Chaque donnée est répartie selon la valeur booléenne résultante.
+\end{enumerate}
+Dans ce sens, une branche de l'arbre correspond donc à une décision.
+\end{frame}
+
+\subsection{Algorithme}
+\begin{frame}
+\frametitle{Comment l'arbre est-il construit ?}
+Le but est que chaque nœud divise l'ensemble de données en deux sous ensemble les plus homogènes possibles.
+Un test est donc associé à un nœud de telle sorte à \textbf{maximiser la réduction d'impureté}.\\
+L'impureté d'un échantillon, aussi appelée \textbf{index de Gini}, permet de calculer l'hétérogénéité de celui-ci \textit{(= degré de mélange)}. Pour toute classe $i$, son index Gini est calculé comme suit :
+\[Gini(p_i) = p_i (1 - p_i)\]
+Plus la probabilité d'une classe $i$ est proche de 0.5, plus l'index est élevé.
+\end{frame}
+
+\begin{frame}
+\frametitle{Comment l'arbre est-il construit ?}
+Le but est que chaque nœud divise l'ensemble de données en deux sous ensemble les plus homogènes possibles.
+Un test est donc associé à un nœud de telle sorte à \textbf{maximiser la réduction d'impureté}.\\
+\[\Leftrightarrow max \Delta I = p(A)I(A) - p(A_L)I(A_L) - p(A_R)I(A_R)\]
+où A est le nœud courant pour un certain test, $A_L$, $A_R$ sont les enfants de gauche et de droite et I(A) est l'impureté du nœud A pour ce test.
 \end{frame}
 
 \end{document}
