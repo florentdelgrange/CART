@@ -6,6 +6,8 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{listings}
+\usepackage{color}
 \usepackage{graphicx}
 \author{Clément Tamines, Florent Delgrange}
 \title{Statistiques multidimensionnelles}
@@ -16,6 +18,33 @@
 \institute{UMONS\\Faculté des Sciences\\BA 3 Sciences Informatiques}
 \date{Juin 2016} 
 \subject{Statistiques multidimensionnelles} 
+\lstset{ %
+  language=R,                     % the language of the code
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},      % keyword style
+  commentstyle=\color{dkgreen},   % comment style
+  stringstyle=\color{mauve},      % string literal style
+  escapeinside={\%*}{*)},         % if you want to add a comment within your code
+  morekeywords={*,...}            % if you want to add more keywords to the set
+} 
+
 \begin{document}
 
 \begin{frame}
@@ -47,6 +76,11 @@ Un test est donc associé à un nœud de telle sorte à \textbf{maximiser la ré
 L'impureté d'un échantillon, aussi appelée \textbf{index de Gini}, permet de calculer l'hétérogénéité de celui-ci \textit{(= degré de mélange)}. Pour toute classe $i$, son index Gini est calculé comme suit :
 \[Gini(p_i) = p_i (1 - p_i)\]
 Plus la probabilité d'une classe $i$ est proche de 0.5, plus l'index est élevé.
+\end{frame}
+
+\begin{frame}
+\frametitle{Calcul de l'impureté d'une classe x}
+\lstinputlisting{Impurete.R}
 \end{frame}
 
 \begin{frame}
