@@ -6,6 +6,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{verbatim}
 \usepackage{listings}
 \usepackage{color}
 \usepackage{graphicx}
@@ -40,7 +41,7 @@
                                   % also try caption instead of title
   keywordstyle=\color{blue},      % keyword style
   commentstyle=\color{dkgreen},   % comment style
-  stringstyle=\color{mauve},      % string literal style
+  stringstyle=\color{violet},      % string literal style
   escapeinside={\%*}{*)},         % if you want to add a comment within your code
   morekeywords={*,...}            % if you want to add more keywords to the set
 } 
@@ -81,6 +82,9 @@ Plus la probabilité d'une classe $i$ est proche de 0.5, plus l'index est élev�
 \begin{frame}
 \frametitle{Calcul de l'impureté d'une classe x}
 \lstinputlisting{Impurete.R}
+Avec x, la classe dont on calcule l'impureté (vecteur). Si on prend le jeu de données Titanic (ptitanic) fourni avec R, on peut calculer l'impureté du facteur survived avec : \begin{verbatim}
+> I(ptitanic\$survived)\\
+$\begin{bmatrix}1\end{bmatrix} 0.4721383$ \end{verbatim}
 \end{frame}
 
 \begin{frame}
@@ -89,6 +93,12 @@ Le but est que chaque nœud divise l'ensemble de données en deux sous ensemble 
 Un test est donc associé à un nœud de telle sorte à \textbf{maximiser la réduction d'impureté}.\\
 \[\Leftrightarrow max \Delta I = p(A)I(A) - p(A_L)I(A_L) - p(A_R)I(A_R)\]
 où A est le nœud courant pour un certain test, $A_L$, $A_R$ sont les enfants de gauche et de droite et I(A) est l'impureté du nœud A pour ce test.
+\end{frame}
+
+\begin{frame}
+\frametitle{Exemple sur le jeu de données Titanic fourni avec R}
+\lstinputlisting{reduction_impurete.R}
+Il s'agit de la valeur de réduction d'impureté de la variable sex. Cette valeur d'impureté est la valeur maximale que l'on obtient au premier nœud de l'arbre et c'est donc le test qui est choisi.
 \end{frame}
 
 \end{document}
