@@ -5,6 +5,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage[]{algorithm2e}
 \usepackage{amssymb}
 \usepackage{verbatim}
 \usepackage{listings}
@@ -72,8 +73,6 @@ Dans ce sens, une branche de l'arbre correspond donc à une décision.
 \subsection{Algorithme}
 \begin{frame}
 \frametitle{Comment l'arbre est-il construit ?}
-Le but est que chaque nœud divise l'ensemble de données en deux sous ensemble les plus homogènes possibles.
-Un test est donc associé à un nœud de telle sorte à \textbf{maximiser la réduction d'impureté}.\\
 L'impureté d'un échantillon, aussi appelée \textbf{index de Gini}, permet de calculer l'hétérogénéité de celui-ci \textit{(= degré de mélange)}. Pour toute classe $i$, son index Gini est calculé comme suit :
 \[Gini(p_i) = p_i (1 - p_i)\]
 Plus la probabilité d'une classe $i$ est proche de 0.5, plus l'index est élevé.
@@ -89,7 +88,7 @@ $\begin{bmatrix}1\end{bmatrix} 0.4721383$ \end{verbatim}
 
 \begin{frame}
 \frametitle{Comment l'arbre est-il construit ?}
-Le but est que chaque nœud divise l'ensemble de données en deux sous ensemble les plus homogènes possibles.
+Le but est tel que chaque nœud divise l'ensemble de données en deux sous ensemble les plus homogènes possibles.
 Un test est donc associé à un nœud de telle sorte à \textbf{maximiser la réduction d'impureté}.\\
 \[\Leftrightarrow max \Delta I = p(A)I(A) - p(A_L)I(A_L) - p(A_R)I(A_R)\]
 où A est le nœud courant pour un certain test, $A_L$, $A_R$ sont les enfants de gauche et de droite et I(A) est l'impureté du nœud A pour ce test.
@@ -98,7 +97,44 @@ où A est le nœud courant pour un certain test, $A_L$, $A_R$ sont les enfants d
 \begin{frame}
 \frametitle{Exemple sur le jeu de données Titanic fourni avec R}
 \lstinputlisting{reduction_impurete.R}
-Il s'agit de la valeur de réduction d'impureté de la variable sex. Cette valeur d'impureté est la valeur maximale que l'on obtient au premier nœud de l'arbre et c'est donc le test qui est choisi.
+Il s'agit de la valeur de réduction d'impureté de la variable sex. Cette valeur d'impureté est la valeur maximale que l'on obtient au premier nœud de l'arbre et c'est donc ce test qui sera choisi.
+\end{frame}
+
+\begin{frame}
+\frametitle{Algorithme de construction de l'arbre}
+\begin{algorithm}[H]
+\LinesNumbered
+\SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
+\SetKwFunction{Union}{Union}\SetKwFunction{FindCompress}{FindCompress}
+\SetKwInput{Entree}{Entr\'ees}
+\SetKwInput{Sortie}{Sorties}
+\SetKw{Retour}{retourner}
+\SetKwFor{Pour}{pour}{faire}{finpour}
+\SetKwFor{Tq}{tant que}{faire}{fintq}
+\SetKwFor{PourCh}{pour chaque}{faire}{fait}
+\SetKwFor{PourTous}{pour tout}{faire}{fait}
+\SetKwRepeat{Repeter}{répéter}{jusqu’à}
+\SetKwIF{Si}{SinonSi}{Sinon}{si}{alors}{sinon si}{sinon}{{fin si}}
+\SetKwSwitch{Match}{Case}{Other}{match}{ : }{cas}{autre cas}{{fin cas}}{{fin match}}
+
+\Entree{Un jeu de données $S$}
+
+$arbre$ $\leftarrow$ initialiser arbre vide \\
+$noeud$ $\leftarrow$ arbre$_{racine}$ \\
+\Repeter{tous les attributs ont été testés}{
+	\Si{$noeud$ est terminal}{
+		affecter une classe à $noeud$\\
+	}
+	\Sinon{
+		Affecter un test à $noeud$ selon son impureté\\
+		$noeud_{Gauche} \leftarrow$ créer sous arbre\\
+		$noeud_{Droite} \leftarrow$ créer sous arbre\\
+	}
+	$noeud \leftarrow$ nœud suivant dans $arbre$\\
+}
+\Retour $arbre$
+\BlankLine
+\end{algorithm}
 \end{frame}
 
 \end{document}
