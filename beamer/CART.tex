@@ -1,8 +1,8 @@
-\documentclass[11pt]{beamer}
-\usetheme{Warsaw}
+\documentclass[compress]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[francais]{babel}
 \usepackage[T1]{fontenc}
+\usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage[]{algorithm2e}
@@ -11,13 +11,17 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage{graphicx}
+\usetheme[navigation]{UMONS}
+
 \author{Clément Tamines, Florent Delgrange}
 \title{Statistiques multidimensionnelles}
 \subtitle[\ldots]{Arbre de décisions (CART)}
 
 \setbeamercovered{transparent} 
 \setbeamertemplate{navigation symbols}{} 
-\institute{UMONS\\Faculté des Sciences\\BA 3 Sciences Informatiques}
+\institute{UMONS\\Faculté des Sciences\\BA 3 Sciences Informatiques\\[2ex]
+  \includegraphics[height=4ex]{UMONS}\hspace{2em}%
+  \raisebox{-1ex}{\includegraphics[height=6ex]{UMONS_FS}}}
 \date{Juin 2016} 
 \subject{Statistiques multidimensionnelles} 
 \lstset{ %
@@ -70,7 +74,7 @@ Un \textbf{arbre de décision} est un outil de classement de données, les répa
 Dans ce sens, une branche de l'arbre correspond donc à une décision.
 \end{frame}
 
-\subsection{Algorithme}
+\subsection{Algorithme de construction le l'arbre CART}
 \begin{frame}
 \frametitle{Comment l'arbre est-il construit ?}
 L'impureté d'un échantillon, aussi appelée \textbf{index de Gini}, permet de calculer l'hétérogénéité de celui-ci \textit{(= degré de mélange)}. Pour toute classe $i$, son index Gini est calculé comme suit :
@@ -97,7 +101,7 @@ où A est le nœud courant pour un certain test, $A_L$, $A_R$ sont les enfants d
 \begin{frame}
 \frametitle{Exemple sur le jeu de données Titanic fourni avec R}
 \lstinputlisting{reduction_impurete.R}
-Il s'agit de la valeur de réduction d'impureté de la variable sex. Cette valeur d'impureté est la valeur maximale que l'on obtient au premier nœud de l'arbre et c'est donc ce test qui sera choisi.
+Il s'agit de la valeur de réduction d'impureté de la variable sex. Cette valeur d'impureté est la valeur maximale que l'on obtient au premier nœud de l'arbre et c'est donc ce test qui sera choisi lors de la construction de l'arbre.
 \end{frame}
 
 \begin{frame}
@@ -117,7 +121,7 @@ Il s'agit de la valeur de réduction d'impureté de la variable sex. Cette valeu
 \SetKwIF{Si}{SinonSi}{Sinon}{si}{alors}{sinon si}{sinon}{{fin si}}
 \SetKwSwitch{Match}{Case}{Other}{match}{ : }{cas}{autre cas}{{fin cas}}{{fin match}}
 
-\Entree{Un jeu de données $S$}
+\Entree{Un jeu de données}
 
 $arbre$ $\leftarrow$ initialiser arbre vide \\
 $noeud$ $\leftarrow$ arbre$_{racine}$ \\
@@ -126,7 +130,7 @@ $noeud$ $\leftarrow$ arbre$_{racine}$ \\
 		affecter une classe à $noeud$\\
 	}
 	\Sinon{
-		Affecter un test à $noeud$ selon son impureté\\
+		Affecter un test à $noeud$ selon la perte d'impureté\\
 		$noeud_{Gauche} \leftarrow$ créer sous arbre\\
 		$noeud_{Droite} \leftarrow$ créer sous arbre\\
 	}
@@ -135,6 +139,10 @@ $noeud$ $\leftarrow$ arbre$_{racine}$ \\
 \Retour $arbre$
 \BlankLine
 \end{algorithm}
+\end{frame}
+
+\begin{frame}
+Note : on dit qu'un nœud est terminal si toutes les valeurs satisfaisant le test du père sont dans la même classe.
 \end{frame}
 
 \end{document}
