@@ -107,7 +107,6 @@ Il s'agit de la valeur de réduction d'impureté de la variable sex. Cette valeu
 \begin{frame}
 \frametitle{Algorithme de construction de l'arbre}
 \begin{algorithm}[H]
-\LinesNumbered
 \SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
 \SetKwFunction{Union}{Union}\SetKwFunction{FindCompress}{FindCompress}
 \SetKwInput{Entree}{Entr\'ees}
@@ -142,7 +141,11 @@ $noeud$ $\leftarrow$ arbre$_{racine}$ \\
 \end{frame}
 
 \begin{frame}
-Note : on dit qu'un nœud est terminal si toutes les valeurs satisfaisant le test du père sont dans la même classe.
+Note : on dit qu'un nœud est terminal si toutes les valeurs satisfaisant le test du père sont dans la même classe.\\
+Grâce à un arbre construit d'une telle façon, nous pouvons prédire où se situeront de nouvelles valeurs dans celui-ci simplement en le parcourant.
 \end{frame}
+
+\section{Implémentation dans R}
+
 
 \end{document}
