@@ -89,7 +89,6 @@ Avec x, la classe dont on calcule l'impureté (vecteur). Si on prend le jeu de d
 > I(ptitanic\$survived)\\
 $\begin{bmatrix}1\end{bmatrix} 0.4721383$ \end{verbatim}
 \end{frame}
-
 \begin{frame}
 \frametitle{Comment l'arbre est-il construit ?}
 Le but est tel que chaque nœud divise l'ensemble de données en deux sous ensemble les plus homogènes possibles.
@@ -147,5 +146,56 @@ Grâce à un arbre construit d'une telle façon, nous pouvons prédire où se si
 
 \section{Implémentation dans R}
 
+\begin{frame}
+Nous allons maintenant expliquer comment créer et utilser un arbre de décision dans R.\\
+Nous allons utiliser la librairie \textbf{rpart}, 
+\end{frame}
+
+\begin{frame}
+Afin d'illustrer l'utilisation de \textbf{rpart}, nous utiliserons le jeu de données \textrm{ptitanic} inclu dans R.\\
+Ce jeu de données contient une liste de passagers du Titanic et pour chaque passager il donne les infos suivantes :\\
+\begin{itemize}
+ \item Le sexe de la personne,
+ \item son age,
+ \item la classe dans laquelle il se trouvait (1ère, 2ème ou 3ème),
+ \item le nombre de frères/soeurs et d'époux qui se trouvait dans le bateau,
+ \item le nombre de parents/enfants qui se trouvait dans le bateau,
+ \item une valeur disant si la personne a survecu ou non au nauffrage.
+\end{itemize}
+\end{frame}
+\begin{frame}
+La fonctionr part s'utilise de la manière suivante: \\
+\lstinputlisting{rpart.r}
+Nous indiquons que nous voulons le résultat de \textrm{survived} en fonction de l'age et du sexe.
+Le graphique suivant est alors produit. Nous avons utilisés les librairie \textbf{rattle} et \textbf{RColorBrewer} ainsi que la fonction \textbf{francyRPartPlot} pour 
+créer des arbres plus lisibles que ceux de base fournis par la fonction \textbf{plot}.
+\end{frame}
+\begin{frame}
+Nous obtenons le résultat suivant avec \textbf{prp} :
+Nous avons comme information une condition sur la valeur d'une variable, les branches correspondantes respectant ou non cette condition.
+Chaque noeud contient le nombre de personnes mortes et vivantes pour les choix effectués sur les variables.
+
+      \begin{center}
+            \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{survie-sexe-age-base.png}
+        \end{center}
+\end{frame}
+
+\begin{frame}
+Nous avons les mêmes informations ici, cependant nous savons maintenant le pourcentage de personnes mortes et vivantes au lieu de leur nombre ainsi que le pourcentage
+total de personnes que ce noeud représente par rapport au nombre total.
+       \begin{center}
+            \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{survie-sexe-age.png}
+        \end{center}
+\end{frame}
+
+
+\begin{frame}
+Le choix de la survie d'une personne se fait par rapport au pourcentage de personnes décédées par rapport aux surviants. 
+
+ Nous allons montrer que cet arbre respecte l'algorithme de création décrit précédemment. Pour la survie en fonction de l'age et du sexe, l'arbre va devoir décider quel
+ critère prendre en premier pour la séparation. Le meilleure critère est celui avec la meilleure différence de pureté. Comme calculé précédemment c'est
+ le sexe qui permettra une meilleure séparation des données. L'abre respecte bien cette mesure
+
+\end{frame}
 
 \end{document}
