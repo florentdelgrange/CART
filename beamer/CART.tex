@@ -65,15 +65,19 @@
 \section{Description de CART}
 \subsection{Introduction}
 \begin{frame}
-\frametitle{Introduction}
+\frametitle{Définition}
 Un \textbf{arbre de décision} est un outil de classement de données, les répartissant selon des critères. C'est une méthode \textbf{d'apprentissage}.
-\begin{enumerate}
+\begin{itemize}
 \item Chaque élément du jeu de données correspond à un vecteur de valeurs.
-\item Chaque nœud de l'arbre correspond à un test sur la valeur d'un des attributs.
-\item Chaque donnée est répartie selon la valeur booléenne résultante.
-\end{enumerate}
-Dans ce sens, une branche de l'arbre correspond donc à une décision.
+\item Chaque nœud de l'arbre correspond à un test sur la valeur d'un des attributs ou à une feuille.
+\item Chaque feuille de l'arbre donne la classe prédite par la branche.
+\end{itemize}
+Dans ce sens, une branche de l'arbre correspond donc à une décision.\\
+
+\underline{\textbf{But :}} Un tel arbre vise à prédire la classe dans laquelle se situe un élément en fonction du jeu de données à partir duquel il a été construit.
+
 \end{frame}
+
 
 \subsection{Algorithme de construction le l'arbre CART}
 \begin{frame}
@@ -145,7 +149,7 @@ $noeud$ $\leftarrow$ arbre$_{racine}$ \\
 \begin{frame}
 Note : on dit qu'un nœud est terminal si 
 \begin{enumerate}
-\item toutes les valeurs satisfaisant le test du père sont dans la même classe.
+\item la majorité des valeurs satisfaisant le test du père sont dans la même classe.
 \item il n'y a plus d'attributs à tester à ce niveau
 \end{enumerate}
 
@@ -155,9 +159,15 @@ Grâce à un arbre construit d'une telle façon, nous pouvons prédire où se si
 \section{Implémentation dans R}
 \subsection{Introduction}
 \begin{frame}
+<<<<<<< HEAD
 \frametitle{Introduction}
 Nous allons maintenant expliquer comment créer et utilser un arbre de décision dans R.\\
 Pour ce faire, nous allons faire la démonstration des fonctions contenues dans la libraire \textbf{rpart}, 
+=======
+Nous allons maintenant expliquer comment créer et utiliser un arbre de décision dans R.\\
+
+Nous allons utiliser la librairie \textbf{rpart}, 
+>>>>>>> d64395351ce059a0fb32992749b2fa63ce7c724a
 \end{frame}
 \subsection{Jeu de données}
 \begin{frame}
