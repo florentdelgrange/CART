@@ -153,16 +153,17 @@ Grâce à un arbre construit d'une telle façon, nous pouvons prédire où se si
 \end{frame}
 
 \section{Implémentation dans R}
-
+\subsection{Introduction}
 \begin{frame}
+\frametitle{Introduction}
 Nous allons maintenant expliquer comment créer et utilser un arbre de décision dans R.\\
-
-Nous allons utiliser la librairie \textbf{rpart}, 
+Pour ce faire, nous allons faire la démonstration des fonctions contenues dans la libraire \textbf{rpart}, 
 \end{frame}
-
+\subsection{Jeu de données}
 \begin{frame}
-Afin d'illustrer l'utilisation de \textbf{rpart}, nous utiliserons le jeu de données \textrm{ptitanic} inclus dans R.\\
-Ce jeu de données contient une liste de passagers du Titanic et pour chaque passager il donne les informations suivantes :\\
+\frametitle{Jeu de données}
+Nous allons utiliser le jeu de données \textrm{ptitanic} inclus dans \textrm{rpart}.\\
+Ce jeu de données contient une liste de passagers du Titanic et pour chaque passager il donne les informations suivantes :\newline
 \begin{itemize}
  \item Le sexe de la personne,
  \item son age,
@@ -172,50 +173,74 @@ Ce jeu de données contient une liste de passagers du Titanic et pour chaque pas
  \item une valeur disant si la personne a survécu ou non au naufrage.
 \end{itemize}
 \end{frame}
+
 \begin{frame}
-La fonctionr part s'utilise de la manière suivante: \\
+ \frametitle{Jeu de données}
+ La fonction \textrm{lapply} permet d'afficher le type de ces valeurs : 
+ \begin{itemize}
+  \item factor : choix entre un nombre fini de valeurs,
+  \item labelled : valeur entière.
+ \end{itemize}
+ \lstinputlisting{variablesType.r}
+\end{frame}
+
+\subsection{Création de l'arbre}
+\begin{frame}
+\frametitle{Création de l'arbre}
+Nous voulons créer un arbre qui nous permettra de prédire la survie d'une personne en fonction des autres variables. Le type de \textrm{\$ survived} peut avoir la valeur 
+\textbf{survived} ou \textbf{died}, nous allons donc créer un arbre de classement.\newline
+
+Nous indiquons à la fonction \textrm{rpart} que nous voulons prédire la valeur de \textrm{\$ survived} en fonction de \textrm{\$ age} et \textrm{\$ sex}.\newline
 \lstinputlisting{rpart.r}
-Nous indiquons que nous voulons le résultat de \textrm{survived} en fonction de l'age et du sexe.
-Le graphique suivant est alors produit. Nous avons utilisés les librairie \textbf{rattle} et \textbf{RColorBrewer} ainsi que la fonction \textbf{francyRPartPlot} pour 
-créer des arbres plus lisibles que ceux de base fournis par la fonction \textbf{plot}.
 \end{frame}
 \begin{frame}
-Nous obtenons le résultat suivant avec \textbf{prp} :
-Nous avons comme information une condition sur la valeur d'une variable, les branches correspondantes respectant ou non cette condition.
-Chaque noeud contient le nombre de personnes mortes et vivantes pour les choix effectués sur les variables.
+ \frametitle{Création de l'arbre}
+Nous avons utilisés les librairie \textbf{rattle} et \textbf{RColorBrewer} ainsi que la fonction \textbf{francyRPartPlot} pour 
+créer des arbres plus lisibles que ceux de base fournis par la fonction \textbf{plot} et \textbf{prp}.
+Les arbres créés par \textrm{plot} et \textrm{prp} sont les suivants : \\
+\includegraphics[width=.5\textwidth,height=1\textheight,keepaspectratio]{img/plot.png}%
+\includegraphics[width=.5\textwidth,height=1\textheight,keepaspectratio]{img/prp.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Arbre final}
 
       \begin{center}
-            \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{survie-sexe-age-base.png}
+           \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{img/fancy.png}
         \end{center}
 \end{frame}
 
 \begin{frame}
-Nous avons les mêmes informations ici, cependant nous savons maintenant le pourcentage de personnes mortes et vivantes au lieu de leur nombre ainsi que le pourcentage
-total de personnes que ce noeud représente par rapport au nombre total.
-       \begin{center}
-            \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{survie-sexe-age.png}
-        \end{center}
+\frametitle{Arbre final}
+Cet arbre nous donne les informations suivantes : \newline
+\begin{itemize}
+ \item Le pourcentage de la population totale que contient chaque noeud,
+ \item Le pourcentage de personnes mortes et vivantes dans chaque noeud,
+ \item La prédiction de la valeur de la variable \textrm{survived} pour chaque noeud,
+ \item Les différents test sur les variables.
+\end{itemize}
+
 \end{frame}
-
-
 \begin{frame}
-Le choix de la survie d'une personne se fait par rapport au pourcentage de personnes décédées par rapport aux surviants. 
-
- Nous allons montrer que cet arbre respecte l'algorithme de création décrit précédemment. Pour la survie en fonction de l'age et du sexe, l'arbre va devoir décider quel
+ \frametitle{Vérification du choix des tests}
+  Nous allons montrer que cet arbre respecte l'algorithme de création décrit précédemment. Pour la survie en fonction de l'age et du sexe, l'arbre va devoir décider quel
  critère prendre en premier pour la séparation. Le meilleure critère est celui avec la meilleure différence de pureté. Comme calculé précédemment c'est
  le sexe qui permettra une meilleure séparation des données. L'abre respecte bien cette mesure
+\end{frame}
+
+\subsection{Prédiction de la valeur d'une variable}
+\begin{frame}
+L'étape d'apprentissage ayant créé l'arbre via les données d'apprentissage, nous pouvons maintenant tenter de détermine la valeur de la variable \textrm{survived}
+en fonction des autres variables. Pour ce faire, il suffit de suivre la branche de l'arbre pour laquelle les variables répondent au tests.\newline
+
+Cet étape se fait via la fonction \textrm{predict}. \newline
+\lstinputlisting{predict.r}
 
 \end{frame}
 
 \begin{frame}
  Voici comment améliorer l'arbre
 \end{frame}
-
-\begin{frame}
- Voici comment utiliser pour des valeurs non booléenne.
-\end{frame}
-
-
 
 \begin{frame}
  Nous allons maintenant montrer comment utiliser l'arbre construit via les données d'apprentissage pour prédire la valeur d'une des variable en fonction des autres.
