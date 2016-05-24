@@ -23,6 +23,7 @@
   \includegraphics[height=4ex]{UMONS}\hspace{2em}%
   \raisebox{-1ex}{\includegraphics[height=6ex]{UMONS_FS}}}
 \date{Juin 2016} 
+\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
 \subject{Statistiques multidimensionnelles} 
 \lstset{ %
   language=R,                     % the language of the code
@@ -45,7 +46,7 @@
   title=\lstname,                 % show the filename of files included with \lstinputlisting;
                                   % also try caption instead of title
   keywordstyle=\color{blue},      % keyword style
-  commentstyle=\color{dkgreen},   % comment style
+  commentstyle=\color{darkgreen},   % comment style
   stringstyle=\color{violet},      % string literal style
   escapeinside={\%*}{*)},         % if you want to add a comment within your code
   morekeywords={*,...}            % if you want to add more keywords to the set
@@ -77,7 +78,7 @@ Dans ce sens, une branche de l'arbre correspond donc à une décision.
 \subsection{Algorithme de construction le l'arbre CART}
 \begin{frame}
 \frametitle{Comment l'arbre est-il construit ?}
-L'impureté d'un échantillon, aussi appelée \textbf{index de Gini}, permet de calculer l'hétérogénéité de celui-ci \textit{(= degré de mélange)}. Pour toute classe $i$, son index Gini est calculé comme suit :
+L'impureté d'un échantillon, aussi appelée \textbf{index de Gini}, permet de calculer l'hétérogénéité de celui-ci \textit{(= degré de mélange)}. On calcule l'index Gini d'une classe $i$ comme suit :
 \[Gini(p_i) = p_i (1 - p_i)\]
 Plus la probabilité d'une classe $i$ est proche de 0.5, plus l'index est élevé.
 \end{frame}
@@ -89,11 +90,13 @@ Avec x, la classe dont on calcule l'impureté (vecteur). Si on prend le jeu de d
 > I(ptitanic\$survived)\\
 $\begin{bmatrix}1\end{bmatrix} 0.4721383$ \end{verbatim}
 \end{frame}
+
 \begin{frame}
 \frametitle{Comment l'arbre est-il construit ?}
 Le but est tel que chaque nœud divise l'ensemble de données en deux sous ensemble les plus homogènes possibles.
 Un test est donc associé à un nœud de telle sorte à \textbf{maximiser la réduction d'impureté}.\\
-\[\Leftrightarrow max \Delta I = p(A)I(A) - p(A_L)I(A_L) - p(A_R)I(A_R)\]
+On veut donc maximiser $\Delta I$, tel que
+\[ \Delta I = p(A)I(A) - p(A_L)I(A_L) - p(A_R)I(A_R)\]
 où A est le nœud courant pour un certain test, $A_L$, $A_R$ sont les enfants de gauche et de droite et I(A) est l'impureté du nœud A pour ce test.
 \end{frame}
 
@@ -123,7 +126,7 @@ Il s'agit de la valeur de réduction d'impureté de la variable sex. Cette valeu
 
 $arbre$ $\leftarrow$ initialiser arbre vide \\
 $noeud$ $\leftarrow$ arbre$_{racine}$ \\
-\Repeter{tous les attributs ont été testés}{
+\Repeter{plus de nœuds sans classes}{
 	\Si{$noeud$ est terminal}{
 		affecter une classe à $noeud$\\
 	}
@@ -140,7 +143,11 @@ $noeud$ $\leftarrow$ arbre$_{racine}$ \\
 \end{frame}
 
 \begin{frame}
-Note : on dit qu'un nœud est terminal si toutes les valeurs satisfaisant le test du père sont dans la même classe.\\
+Note : on dit qu'un nœud est terminal si 
+\begin{enumerate}
+\item toutes les valeurs satisfaisant le test du père sont dans la même classe.
+\item il n'y a plus d'attributs à tester à ce niveau
+\end{enumerate}
 
 Grâce à un arbre construit d'une telle façon, nous pouvons prédire où se situeront de nouveaux éléments dans celui-ci simplement en le parcourant.
 \end{frame}
