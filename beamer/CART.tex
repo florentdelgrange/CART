@@ -227,9 +227,13 @@ Cet arbre nous donne les informations suivantes : \newline
 \end{frame}
 \begin{frame}
  \frametitle{Vérification du choix des tests}
-Nous allons montrer que cet arbre respecte l'algorithme de création décrit précédemment. Pour la survie en fonction de l'age et du sexe, l'arbre va devoir décider quel
-critère prendre en premier pour la séparation. Le meilleure critère est celui avec la meilleure différence de pureté. Comme calculé précédemment c'est
-le sexe qui permettra une meilleure séparation des données. L'abre respecte bien ce fait. 
+Nous allons montrer que cet arbre respecte l'algorithme de création décrit précédemment. Pour la survie en fonction de l'age et du sexe, l'arbre va devoir décider quelle
+variable prendre en premier pour la séparation. La meilleure variable est celle avec la meilleure valeur de perte d'inpureté. \\
+Comme calculé précédemment la valeur pour sexe est 0.1319704, nous avons calculés que l'age qui donnera le meilleur résultat de différence d'inpureté est \textrm{age = 9.5} et donnera
+une valeur de 0.0915799.\newline
+
+Le sexe étant la variable avec la meilleure valeur, elle permettra une meilleure séparation des données. L'abre respecte bien ce fait en choisisant d'abord la variable sexe pour
+classer les données.
 \end{frame}
 
 \subsection{Prédiction de la valeur d'une variable}
