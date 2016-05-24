@@ -159,15 +159,9 @@ Grâce à un arbre construit d'une telle façon, nous pouvons prédire où se si
 \section{Implémentation dans R}
 \subsection{Introduction}
 \begin{frame}
-<<<<<<< HEAD
 \frametitle{Introduction}
 Nous allons maintenant expliquer comment créer et utilser un arbre de décision dans R.\\
 Pour ce faire, nous allons faire la démonstration des fonctions contenues dans la libraire \textbf{rpart}, 
-=======
-Nous allons maintenant expliquer comment créer et utiliser un arbre de décision dans R.\\
-
-Nous allons utiliser la librairie \textbf{rpart}, 
->>>>>>> d64395351ce059a0fb32992749b2fa63ce7c724a
 \end{frame}
 \subsection{Jeu de données}
 \begin{frame}
@@ -233,33 +227,30 @@ Cet arbre nous donne les informations suivantes : \newline
 \end{frame}
 \begin{frame}
  \frametitle{Vérification du choix des tests}
-  Nous allons montrer que cet arbre respecte l'algorithme de création décrit précédemment. Pour la survie en fonction de l'age et du sexe, l'arbre va devoir décider quel
- critère prendre en premier pour la séparation. Le meilleure critère est celui avec la meilleure différence de pureté. Comme calculé précédemment c'est
- le sexe qui permettra une meilleure séparation des données. L'abre respecte bien cette mesure
+Nous allons montrer que cet arbre respecte l'algorithme de création décrit précédemment. Pour la survie en fonction de l'age et du sexe, l'arbre va devoir décider quel
+critère prendre en premier pour la séparation. Le meilleure critère est celui avec la meilleure différence de pureté. Comme calculé précédemment c'est
+le sexe qui permettra une meilleure séparation des données. L'abre respecte bien ce fait. 
 \end{frame}
 
 \subsection{Prédiction de la valeur d'une variable}
 \begin{frame}
+\frametitle{Prédiction de la valeur d'une variable}
 L'étape d'apprentissage ayant créé l'arbre via les données d'apprentissage, nous pouvons maintenant tenter de détermine la valeur de la variable \textrm{survived}
 en fonction des autres variables. Pour ce faire, il suffit de suivre la branche de l'arbre pour laquelle les variables répondent au tests.\newline
+ Nous allons utiliser des personnes pour lesquelles nous connaissons l'age, le sexe, la classe et le nombre de membres de la famille dans le bateau et nous prédirons
+ si cette personne a survécu ou non en parcourant l'arbre.\newline
 
 Cet étape se fait via la fonction \textrm{predict}. \newline
-\lstinputlisting{predict.r}
-
-\end{frame}
-
-\begin{frame}
- Voici comment améliorer l'arbre
-\end{frame}
-
-\begin{frame}
- Nous allons maintenant montrer comment utiliser l'arbre construit via les données d'apprentissage pour prédire la valeur d'une des variable en fonction des autres.
- Nous allons utiliser des personnes pour lesquelles nous connaissons l'age, le sexe, la classe et le nombre de membres de la famille dans le bateau et nous prédirons
- si cette personne a survécu ou non en parcourant l'arbre. Le code suivant permet de faire cela :\\
  \lstinputlisting{predict.r}
- Nous prédisons ainsi le sort des 10 premiers passagers et le comparons aux valeurs théoriques obtenues. Nous remarquons que l'arbre a prédit correctement le sort
- de neuf de huit des dix passagers.
 \end{frame}
+\begin{frame}
+\frametitle{Prédiction de la valeur d'une variable}
+ \lstinputlisting{valPredicted.R}
+
+Nous prédisons ainsi le sort des 10 premiers passagers et le comparons aux valeurs théoriques obtenues. Nous remarquons que l'arbre a prédit correctement le sort
+de sept des dix passagers.
+\end{frame}
+
 
 
 \end{document}
