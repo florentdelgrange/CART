@@ -67,7 +67,7 @@
 \frametitle{Introduction}
 Un \textbf{arbre de décision} est un outil de classement de données, les répartissant selon des critères. C'est une méthode \textbf{d'apprentissage}.
 \begin{enumerate}
-\item Le jeu de données correspond à un vecteur de valeurs.
+\item Chaque élément du jeu de données correspond à un vecteur de valeurs.
 \item Chaque nœud de l'arbre correspond à un test sur la valeur d'un des attributs.
 \item Chaque donnée est répartie selon la valeur booléenne résultante.
 \end{enumerate}
@@ -141,26 +141,28 @@ $noeud$ $\leftarrow$ arbre$_{racine}$ \\
 
 \begin{frame}
 Note : on dit qu'un nœud est terminal si toutes les valeurs satisfaisant le test du père sont dans la même classe.\\
-Grâce à un arbre construit d'une telle façon, nous pouvons prédire où se situeront de nouvelles valeurs dans celui-ci simplement en le parcourant.
+
+Grâce à un arbre construit d'une telle façon, nous pouvons prédire où se situeront de nouveaux éléments dans celui-ci simplement en le parcourant.
 \end{frame}
 
 \section{Implémentation dans R}
 
 \begin{frame}
 Nous allons maintenant expliquer comment créer et utilser un arbre de décision dans R.\\
+
 Nous allons utiliser la librairie \textbf{rpart}, 
 \end{frame}
 
 \begin{frame}
-Afin d'illustrer l'utilisation de \textbf{rpart}, nous utiliserons le jeu de données \textrm{ptitanic} inclu dans R.\\
-Ce jeu de données contient une liste de passagers du Titanic et pour chaque passager il donne les infos suivantes :\\
+Afin d'illustrer l'utilisation de \textbf{rpart}, nous utiliserons le jeu de données \textrm{ptitanic} inclus dans R.\\
+Ce jeu de données contient une liste de passagers du Titanic et pour chaque passager il donne les informations suivantes :\\
 \begin{itemize}
  \item Le sexe de la personne,
  \item son age,
  \item la classe dans laquelle il se trouvait (1ère, 2ème ou 3ème),
- \item le nombre de frères/soeurs et d'époux qui se trouvait dans le bateau,
+ \item le nombre de frères/sœurs et d'époux qui se trouvait dans le bateau,
  \item le nombre de parents/enfants qui se trouvait dans le bateau,
- \item une valeur disant si la personne a survecu ou non au nauffrage.
+ \item une valeur disant si la personne a survécu ou non au naufrage.
 \end{itemize}
 \end{frame}
 \begin{frame}
