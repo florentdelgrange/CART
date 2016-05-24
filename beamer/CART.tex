@@ -198,4 +198,24 @@ Le choix de la survie d'une personne se fait par rapport au pourcentage de perso
 
 \end{frame}
 
+\begin{frame}
+ Voici comment améliorer l'arbre
+\end{frame}
+
+\begin{frame}
+ Voici comment utiliser pour des valeurs non booléenne.
+\end{frame}
+
+
+
+\begin{frame}
+ Nous allons mintenant montrer comment utiliser l'arbre constuit via les données d'apprentissage pour prédire la valeur d'une des variable en fonction des autres.
+ Nous allons utiliser des personnes pour lesquelles nous connaissons l'age, le sexe, la classe et le nombre de membres de la famille dans le bateau et nous prédirons
+ si cette personne a survécu ou non en parcourant l'arbre. Le code suivant permet de faire cela :\\
+ \lstinputlisting{predict.r}
+ Nous prédisons ainsi le sort des 10 premiers passagers et le comparons aux valeurs théoriques obtenues. Nous remarquons que l'arbre a prédit correctement le sort
+ de neuf de huit des dix passagers.
+\end{frame}
+
+
 \end{document}
