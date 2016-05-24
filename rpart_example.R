@@ -21,3 +21,7 @@ ptitanicTree #info about the tree construction
 
 plot(ptitanic$survived~ptitanic$age) #better visualisation of data
 
+ptitanicTree$cptable #info about optimal tree
+
+ptitanicTree <- rpart(survived~.,data=ptitanic,control=rpart.control(minsplit=5,cp=0)) #Allows to separate nodes that have min 5 observations in them (20 is default), cp forces a separation to improve class quality by a percentage 
+
