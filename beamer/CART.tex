@@ -160,20 +160,20 @@ Grâce à un arbre construit d'une telle façon, nous pouvons prédire où se si
 \subsection{Introduction}
 \begin{frame}
 \frametitle{Introduction}
-Nous allons maintenant expliquer comment créer et utilser un arbre de décision dans R.\\
-Pour ce faire, nous allons faire la démonstration des fonctions contenues dans la libraire \textbf{rpart}, 
+Nous allons maintenant expliquer comment créer et utiliser un arbre de classification dans R.\\
+Pour ce faire, nous allons faire la démonstration des fonctions contenues dans la libraire \textbf{rpart}.
 \end{frame}
 \subsection{Jeu de données}
 \begin{frame}
 \frametitle{Jeu de données}
-Nous allons utiliser le jeu de données \textrm{ptitanic} inclus dans \textrm{rpart}.\\
+Nous allons utiliser le jeu de données \textrm{ptitanic} inclu dans \textrm{rpart}.\\
 Ce jeu de données contient une liste de passagers du Titanic et pour chaque passager il donne les informations suivantes :\newline
 \begin{itemize}
  \item Le sexe de la personne,
  \item son age,
  \item la classe dans laquelle il se trouvait (1ère, 2ème ou 3ème),
  \item le nombre de frères/sœurs et d'époux qui se trouvait dans le bateau,
- \item le nombre de parents/enfants qui se trouvait dans le bateau,
+ \item le nombre de parents/enfants qui se trouvaient dans le bateau,
  \item une valeur disant si la personne a survécu ou non au naufrage.
 \end{itemize}
 \end{frame}
@@ -183,7 +183,7 @@ Ce jeu de données contient une liste de passagers du Titanic et pour chaque pas
  La fonction \textrm{lapply} permet d'afficher le type de ces valeurs : 
  \begin{itemize}
   \item factor : choix entre un nombre fini de valeurs,
-  \item labelled : valeur entière.
+  \item labelled : valeur numérique.
  \end{itemize}
  \lstinputlisting{variablesType.r}
 \end{frame}
@@ -191,15 +191,15 @@ Ce jeu de données contient une liste de passagers du Titanic et pour chaque pas
 \subsection{Création de l'arbre}
 \begin{frame}
 \frametitle{Création de l'arbre}
-Nous voulons créer un arbre qui nous permettra de prédire la survie d'une personne en fonction des autres variables. Le type de \textrm{\$ survived} peut avoir la valeur 
-\textbf{survived} ou \textbf{died}, nous allons donc créer un arbre de classement.\newline
+Nous voulons créer un arbre qui nous permettra de prédire la survie d'une personne en fonction des autres variables. La variable de \textrm{survived} peut avoir la valeur 
+\textbf{survived} ou \textbf{died}, nous allons donc créer un arbre de classification.\newline
 
-Nous indiquons à la fonction \textrm{rpart} que nous voulons prédire la valeur de \textrm{\$ survived} en fonction de \textrm{\$ age} et \textrm{\$ sex}.\newline
+Nous indiquons à la fonction \textrm{rpart} que nous voulons prédire la valeur de \textrm{survived} en fonction de \textrm{age} et \textrm{sex}.\newline
 \lstinputlisting{rpart.r}
 \end{frame}
 \begin{frame}
  \frametitle{Création de l'arbre}
-Nous avons utilisés les librairie \textbf{rattle} et \textbf{RColorBrewer} ainsi que la fonction \textbf{francyRPartPlot} pour 
+Nous avons utilisé les librairie \textbf{rattle} et \textbf{RColorBrewer} ainsi que la fonction \textbf{francyRPartPlot} pour 
 créer des arbres plus lisibles que ceux de base fournis par la fonction \textbf{plot} et \textbf{prp}.
 Les arbres créés par \textrm{plot} et \textrm{prp} sont les suivants : \\
 \includegraphics[width=.5\textwidth,height=1\textheight,keepaspectratio]{img/plot.png}%
@@ -240,7 +240,7 @@ classer les données.
 \begin{frame}
 \frametitle{Prédiction de la valeur d'une variable}
 L'étape d'apprentissage ayant créé l'arbre via les données d'apprentissage, nous pouvons maintenant tenter de déterminer la valeur de la variable \textrm{survived}
-en fonction des autres variables. Pour se faire, il suffit de suivre la branche de l'arbre pour laquelle les variables répondent au tests.\newline
+en fonction des autres variables. Pour ce faire, il suffit de suivre la branche de l'arbre pour laquelle les variables répondent au tests.\newline
  Nous allons utiliser des personnes pour lesquelles nous connaissons l'age, le sexe, la classe et le nombre de membres de la famille dans le bateau et nous prédirons
  si cette personne a survécu ou non en parcourant l'arbre.\newline
 
